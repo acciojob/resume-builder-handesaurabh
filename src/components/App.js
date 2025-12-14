@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import './../styles/App.css';
+import "./../styles/App.css";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -15,18 +15,17 @@ const App = () => {
 
   return (
     <div>
-     
       <h1>RESUME GENERATOR</h1>
 
       {page === 0 && (
         <div>
           <h2>Add your profile details</h2>
 
-          <input name="fname" />
-          <input name="lname" />
-          <input name="phone" />
-          <input name="address" />
-          <input name="url" />
+          <input name="fname" onChange={e => setProfile({ ...profile, fname: e.target.value })} />
+          <input name="lname" onChange={e => setProfile({ ...profile, lname: e.target.value })} />
+          <input name="phone" onChange={e => setProfile({ ...profile, phone: e.target.value })} />
+          <input name="address" onChange={e => setProfile({ ...profile, address: e.target.value })} />
+          <input name="url" onChange={e => setProfile({ ...profile, url: e.target.value })} />
 
           <button onClick={() => dispatch({ type: "SAVE_PROFILE", payload: profile })}>
             Save Profile
@@ -61,7 +60,7 @@ const App = () => {
         <div>
           <h2>Skills</h2>
 
-          <input name="skill" onChange={e => setSkill(e.target.value)} />
+          <input name="skill" type="number" onChange={e => setSkill(e.target.value)} />
 
           <button id="add_skill" onClick={() => dispatch({ type: "ADD_SKILL", payload: skill })}>
             Add
@@ -83,7 +82,7 @@ const App = () => {
 
           <input name="projectName" onChange={e => setProject({ ...project, projectName: e.target.value })} />
           <input name="techStack" onChange={e => setProject({ ...project, techStack: e.target.value })} />
-          <input name="description" onChange={e => setProject({ ...project, description: e.target.value })} />
+          <textarea name="description" onChange={e => setProject({ ...project, description: e.target.value })} />
 
           <button id="add_project" onClick={() => dispatch({ type: "ADD_PROJECT", payload: project })}>
             Add
@@ -103,7 +102,7 @@ const App = () => {
         <div>
           <h2>Social Media Links</h2>
 
-          <input name="Social" onChange={e => setSocial(e.target.value)} />
+          <input name="Social" type="number" onChange={e => setSocial(e.target.value)} />
 
           <button id="add_social" onClick={() => dispatch({ type: "ADD_SOCIAL", payload: social })}>
             Add
