@@ -1,2 +1,10 @@
 export const nextPage = () => ({ type: "NEXT" });
 export const backPage = () => ({ type: "BACK" });
+export const saveProfile = (profile) => ({ type: "SAVE_PROFILE", payload: profile });
+export const addEducation = (education) => ({ type: "ADD_EDU", payload: education });
+export const deleteEducation = (index) => ({ type: "DEL_EDU", payload: index });
+export const addSkill = (skill) => ({ type: "ADD_SKILL", payload: skill });
+export const deleteSkill = (index) => ({ type: "DEL_SKILL", payload: index });
+export const addProject = (project) => ({ type: "ADD_PROJECT", payload: project });
+export const deleteProject = (index) => ({ type: "DEL_PROJECT", payload: index });
+export const addSocial = (social) => ({ type: "ADD_SOCIAL", payload: social });
