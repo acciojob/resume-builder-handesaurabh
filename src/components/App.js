@@ -62,12 +62,12 @@ const App = () => {
             {state.education.map((edu, index) => (
               <div key={index} className="entry-item">
                 <span>{edu.courseName} - {edu.college}</span>
-                <button id="delete" onClick={() => dispatch(deleteEducation(index))}>Delete</button>
+                <button id={`delete-${index}`} onClick={() => dispatch(deleteEducation(index))}>Delete</button>
               </div>
             ))}
           </div>
 
-          <input id="education_count" value={state.education.length} readOnly />
+          <div id="education-count">{state.education.length}</div>
         </div>
       )}
 
@@ -84,12 +84,12 @@ const App = () => {
             {state.skills.map((skill, index) => (
               <div key={index} className="entry-item">
                 <span>{skill}</span>
-                <button id="delete_skill" onClick={() => dispatch(deleteSkill(index))}>Delete</button>
+                <button id={`delete_skill-${index}`} onClick={() => dispatch(deleteSkill(index))}>Delete</button>
               </div>
             ))}
           </div>
 
-          <input id="skill_count" value={state.skills.length} readOnly />
+          <div id="skills-count">{state.skills.length}</div>
         </div>
       )}
 
@@ -108,12 +108,12 @@ const App = () => {
             {state.projects.map((proj, index) => (
               <div key={index} className="entry-item">
                 <span>{proj.projectName} - {proj.techStack}</span>
-                <button id="delete" onClick={() => dispatch(deleteProject(index))}>Delete</button>
+                <button id={`delete-project-${index}`} onClick={() => dispatch(deleteProject(index))}>Delete</button>
               </div>
             ))}
           </div>
 
-          <input id="project_count" value={state.projects.length} readOnly />
+          <div id="projects-count">{state.projects.length}</div>
         </div>
       )}
 
@@ -125,7 +125,7 @@ const App = () => {
 
           <button id="add_social" onClick={() => dispatch(addSocial(social))}>Add</button>
 
-          <input id="social_count" value={state.social.length} readOnly />
+          <div id="social-count">{state.social.length}</div>
         </div>
       )}
 
@@ -136,7 +136,7 @@ const App = () => {
         </div>
       )}
 
-      {/* Global navigation buttons - restored from original code */}
+      {/* Global navigation buttons - only set of navigation buttons */}
       <div className="makeStyles-footer-15">
         {page > 0 && <button id="back" className="MuiButton-contained" onClick={() => dispatch(backPage())}>Back</button>}
         {page < 5 && <button id="next" className="MuiButton-contained" onClick={() => dispatch(nextPage())}>Next</button>}
