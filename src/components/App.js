@@ -27,9 +27,7 @@ const App = () => {
           <input name="address" onChange={e => setProfile({ ...profile, address: e.target.value })} />
           <input name="url" onChange={e => setProfile({ ...profile, url: e.target.value })} />
 
-          <button onClick={() => dispatch({ type: "SAVE_PROFILE", payload: profile })}>
-            Save Profile
-          </button>
+          <button onClick={() => dispatch({ type: "SAVE_PROFILE", payload: profile })}>Save Profile</button>
         </div>
       )}
 
@@ -42,16 +40,12 @@ const App = () => {
           <input name="college" onChange={e => setEducation({ ...education, college: e.target.value })} />
           <input name="percentage" onChange={e => setEducation({ ...education, percentage: e.target.value })} />
 
-          <button id="add_education" onClick={() => dispatch({ type: "ADD_EDU", payload: education })}>
-            Add
-          </button>
+          <button id="add_education" onClick={() => dispatch({ type: "ADD_EDU", payload: education })}>Add</button>
 
           <div>{state.education.length}</div>
 
           {state.education.map((_, i) => (
-            <button key={i} id="delete" onClick={() => dispatch({ type: "DEL_EDU", payload: i })}>
-              Delete
-            </button>
+            <button key={i} id="delete" onClick={() => dispatch({ type: "DEL_EDU", payload: i })}>Delete</button>
           ))}
         </div>
       )}
@@ -60,18 +54,15 @@ const App = () => {
         <div>
           <h2>Skills</h2>
 
-          <input name="skill" type="number" onChange={e => setSkill(e.target.value)} />
+          <input name="skill" onChange={e => setSkill(e.target.value)} />
+          <div>{skill}</div>
 
-          <button id="add_skill" onClick={() => dispatch({ type: "ADD_SKILL", payload: skill })}>
-            Add
-          </button>
+          <button id="add_skill" onClick={() => dispatch({ type: "ADD_SKILL", payload: skill })}>Add</button>
 
           <div>{state.skills.length}</div>
 
           {state.skills.map((_, i) => (
-            <button key={i} id="delete_skill" onClick={() => dispatch({ type: "DEL_SKILL", payload: i })}>
-              Delete
-            </button>
+            <button key={i} id="delete_skill" onClick={() => dispatch({ type: "DEL_SKILL", payload: i })}>Delete</button>
           ))}
         </div>
       )}
@@ -83,17 +74,14 @@ const App = () => {
           <input name="projectName" onChange={e => setProject({ ...project, projectName: e.target.value })} />
           <input name="techStack" onChange={e => setProject({ ...project, techStack: e.target.value })} />
           <textarea name="description" onChange={e => setProject({ ...project, description: e.target.value })} />
+          <div>{project.description}</div>
 
-          <button id="add_project" onClick={() => dispatch({ type: "ADD_PROJECT", payload: project })}>
-            Add
-          </button>
+          <button id="add_project" onClick={() => dispatch({ type: "ADD_PROJECT", payload: project })}>Add</button>
 
           <div>{state.projects.length}</div>
 
           {state.projects.map((_, i) => (
-            <button key={i} id="delete" onClick={() => dispatch({ type: "DEL_PROJECT", payload: i })}>
-              Delete
-            </button>
+            <button key={i} id="delete" onClick={() => dispatch({ type: "DEL_PROJECT", payload: i })}>Delete</button>
           ))}
         </div>
       )}
@@ -102,11 +90,10 @@ const App = () => {
         <div>
           <h2>Social Media Links</h2>
 
-          <input name="Social" type="number" onChange={e => setSocial(e.target.value)} />
+          <input name="Social" onChange={e => setSocial(e.target.value)} />
+          <div>{social}</div>
 
-          <button id="add_social" onClick={() => dispatch({ type: "ADD_SOCIAL", payload: social })}>
-            Add
-          </button>
+          <button id="add_social" onClick={() => dispatch({ type: "ADD_SOCIAL", payload: social })}>Add</button>
 
           <div>{state.social.length}</div>
         </div>
@@ -119,9 +106,11 @@ const App = () => {
         </div>
       )}
 
-      <button id="back" onClick={() => dispatch({ type: "BACK" })}>Back</button>
-      <button id="save_continue" onClick={() => dispatch({ type: "NEXT" })}>Save</button>
-      <button id="next" onClick={() => dispatch({ type: "NEXT" })}>Next</button>
+      <div className="makeStyles-footer-15">
+        <button className="MuiButton-contained" id="back" onClick={() => dispatch({ type: "BACK" })}>Back</button>
+        <button className="MuiButton-contained" id="save_continue" onClick={() => dispatch({ type: "NEXT" })}>Save</button>
+        <button className="MuiButton-contained" id="next" onClick={() => dispatch({ type: "NEXT" })}>Next</button>
+      </div>
     </div>
   );
 };
