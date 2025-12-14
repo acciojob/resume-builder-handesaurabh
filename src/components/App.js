@@ -15,14 +15,19 @@ const App = () => {
 
   return (
     <div>
+     
+      <h1>RESUME GENERATOR</h1>
 
       {page === 0 && (
         <div>
-          <input name="fname" onChange={e => setProfile({ ...profile, fname: e.target.value })} />
-          <input name="lname" onChange={e => setProfile({ ...profile, lname: e.target.value })} />
-          <input name="phone" onChange={e => setProfile({ ...profile, phone: e.target.value })} />
-          <input name="address" onChange={e => setProfile({ ...profile, address: e.target.value })} />
-          <input name="url" onChange={e => setProfile({ ...profile, url: e.target.value })} />
+          <h2>Add your profile details</h2>
+
+          <input name="fname" />
+          <input name="lname" />
+          <input name="phone" />
+          <input name="address" />
+          <input name="url" />
+
           <button onClick={() => dispatch({ type: "SAVE_PROFILE", payload: profile })}>
             Save Profile
           </button>
@@ -31,24 +36,21 @@ const App = () => {
 
       {page === 1 && (
         <div>
+          <h2>Add your Education Details</h2>
+
           <input name="courseName" onChange={e => setEducation({ ...education, courseName: e.target.value })} />
           <input name="completionYear" onChange={e => setEducation({ ...education, completionYear: e.target.value })} />
           <input name="college" onChange={e => setEducation({ ...education, college: e.target.value })} />
           <input name="percentage" onChange={e => setEducation({ ...education, percentage: e.target.value })} />
 
-          <button
-            id="add_education"
-            onClick={() => dispatch({ type: "ADD_EDU", payload: education })}
-          >
-            Add Education
+          <button id="add_education" onClick={() => dispatch({ type: "ADD_EDU", payload: education })}>
+            Add
           </button>
 
-          {state.education.map((_, index) => (
-            <button
-              key={index}
-              id="delete"
-              onClick={() => dispatch({ type: "DEL_EDU", payload: index })}
-            >
+          <div>{state.education.length}</div>
+
+          {state.education.map((_, i) => (
+            <button key={i} id="delete" onClick={() => dispatch({ type: "DEL_EDU", payload: i })}>
               Delete
             </button>
           ))}
@@ -57,21 +59,18 @@ const App = () => {
 
       {page === 2 && (
         <div>
+          <h2>Skills</h2>
+
           <input name="skill" onChange={e => setSkill(e.target.value)} />
 
-          <button
-            id="add_skill"
-            onClick={() => dispatch({ type: "ADD_SKILL", payload: skill })}
-          >
-            Add Skill
+          <button id="add_skill" onClick={() => dispatch({ type: "ADD_SKILL", payload: skill })}>
+            Add
           </button>
 
-          {state.skills.map((_, index) => (
-            <button
-              key={index}
-              id="delete_skill"
-              onClick={() => dispatch({ type: "DEL_SKILL", payload: index })}
-            >
+          <div>{state.skills.length}</div>
+
+          {state.skills.map((_, i) => (
+            <button key={i} id="delete_skill" onClick={() => dispatch({ type: "DEL_SKILL", payload: i })}>
               Delete
             </button>
           ))}
@@ -80,23 +79,20 @@ const App = () => {
 
       {page === 3 && (
         <div>
+          <h2>Add your Mini Projects</h2>
+
           <input name="projectName" onChange={e => setProject({ ...project, projectName: e.target.value })} />
           <input name="techStack" onChange={e => setProject({ ...project, techStack: e.target.value })} />
           <input name="description" onChange={e => setProject({ ...project, description: e.target.value })} />
 
-          <button
-            id="add_project"
-            onClick={() => dispatch({ type: "ADD_PROJECT", payload: project })}
-          >
-            Add Project
+          <button id="add_project" onClick={() => dispatch({ type: "ADD_PROJECT", payload: project })}>
+            Add
           </button>
 
-          {state.projects.map((_, index) => (
-            <button
-              key={index}
-              id="delete"
-              onClick={() => dispatch({ type: "DEL_PROJECT", payload: index })}
-            >
+          <div>{state.projects.length}</div>
+
+          {state.projects.map((_, i) => (
+            <button key={i} id="delete" onClick={() => dispatch({ type: "DEL_PROJECT", payload: i })}>
               Delete
             </button>
           ))}
@@ -105,37 +101,30 @@ const App = () => {
 
       {page === 4 && (
         <div>
+          <h2>Social Media Links</h2>
+
           <input name="Social" onChange={e => setSocial(e.target.value)} />
 
-          <button
-            id="add_social"
-            onClick={() => dispatch({ type: "ADD_SOCIAL", payload: social })}
-          >
-            Add Social
+          <button id="add_social" onClick={() => dispatch({ type: "ADD_SOCIAL", payload: social })}>
+            Add
           </button>
+
+          <div>{state.social.length}</div>
         </div>
       )}
 
       {page === 5 && (
         <div>
+          <h2>Final Resume</h2>
           <pre>{JSON.stringify(state, null, 2)}</pre>
         </div>
       )}
 
-      <button id="back" onClick={() => dispatch({ type: "BACK" })}>
-        Back
-      </button>
-
-      <button id="save_continue" onClick={() => dispatch({ type: "NEXT" })}>
-        Save
-      </button>
-
-      <button id="next" onClick={() => dispatch({ type: "NEXT" })}>
-        Next
-      </button>
+      <button id="back" onClick={() => dispatch({ type: "BACK" })}>Back</button>
+      <button id="save_continue" onClick={() => dispatch({ type: "NEXT" })}>Save</button>
+      <button id="next" onClick={() => dispatch({ type: "NEXT" })}>Next</button>
     </div>
   );
 };
 
 export default App;
-
