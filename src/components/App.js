@@ -1,5 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { 
+  nextPage, 
+  backPage, 
+  saveProfile, 
+  addEducation, 
+  deleteEducation, 
+  addSkill, 
+  deleteSkill, 
+  addProject, 
+  deleteProject, 
+  addSocial 
+} from "../actions";
 import "./../styles/App.css";
 
 const App = () => {
@@ -27,7 +39,10 @@ const App = () => {
           <input name="address" value={profile.address || ""} onChange={e => setProfile({ ...profile, address: e.target.value })} />
           <input name="url" value={profile.url || ""} onChange={e => setProfile({ ...profile, url: e.target.value })} />
 
-          <button onClick={() => dispatch({ type: "SAVE_PROFILE", payload: profile })}>Save Profile</button>
+          <button id="save_continue" onClick={() => {
+            dispatch(saveProfile(profile));
+            dispatch(nextPage());
+          }}>Save & Continue</button>
         </div>
       )}
 
@@ -40,9 +55,25 @@ const App = () => {
           <input name="college" value={education.college || ""} onChange={e => setEducation({ ...education, college: e.target.value })} />
           <input name="percentage" value={education.percentage || ""} onChange={e => setEducation({ ...education, percentage: e.target.value })} />
 
-          <button id="add_education" onClick={() => dispatch({ type: "ADD_EDU", payload: education })}>Add</button>
+          <button id="add_education" onClick={() => dispatch(addEducation(education))}>Add</button>
+
+          {/* Display education entries with delete buttons */}
+          <div>
+            {state.education.map((edu, index) => (
+              <div key={index} className="entry-item">
+                <span>{edu.courseName} - {edu.college}</span>
+                <button id="delete" onClick={() => dispatch(deleteEducation(index))}>Delete</button>
+              </div>
+            ))}
+          </div>
 
           <div>{state.education.length}</div>
+          
+          {/* Navigation buttons */}
+          <div className="navigation-buttons">
+            <button id="back" onClick={() => dispatch(backPage())}>Back</button>
+            <button id="next" onClick={() => dispatch(nextPage())}>Next</button>
+          </div>
         </div>
       )}
 
@@ -52,9 +83,25 @@ const App = () => {
 
           <input name="skill" value={skill} onChange={e => setSkill(e.target.value)} />
 
-          <button id="add_skill" onClick={() => dispatch({ type: "ADD_SKILL", payload: skill })}>Add</button>
+          <button id="add_skill" onClick={() => dispatch(addSkill(skill))}>Add</button>
+
+          {/* Display skills with delete buttons */}
+          <div>
+            {state.skills.map((skill, index) => (
+              <div key={index} className="entry-item">
+                <span>{skill}</span>
+                <button id="delete_skill" onClick={() => dispatch(deleteSkill(index))}>Delete</button>
+              </div>
+            ))}
+          </div>
 
           <div>{state.skills.length}</div>
+          
+          {/* Navigation buttons */}
+          <div className="navigation-buttons">
+            <button id="back" onClick={() => dispatch(backPage())}>Back</button>
+            <button id="next" onClick={() => dispatch(nextPage())}>Next</button>
+          </div>
         </div>
       )}
 
@@ -66,9 +113,25 @@ const App = () => {
           <input name="techStack" value={project.techStack} onChange={e => setProject({ ...project, techStack: e.target.value })} />
           <textarea name="description" value={project.description} onChange={e => setProject({ ...project, description: e.target.value })} />
 
-          <button id="add_project" onClick={() => dispatch({ type: "ADD_PROJECT", payload: project })}>Add</button>
+          <button id="add_project" onClick={() => dispatch(addProject(project))}>Add</button>
+
+          {/* Display projects with delete buttons */}
+          <div>
+            {state.projects.map((proj, index) => (
+              <div key={index} className="entry-item">
+                <span>{proj.projectName} - {proj.techStack}</span>
+                <button id="delete" onClick={() => dispatch(deleteProject(index))}>Delete</button>
+              </div>
+            ))}
+          </div>
 
           <div>{state.projects.length}</div>
+          
+          {/* Navigation buttons */}
+          <div className="navigation-buttons">
+            <button id="back" onClick={() => dispatch(backPage())}>Back</button>
+            <button id="next" onClick={() => dispatch(nextPage())}>Next</button>
+          </div>
         </div>
       )}
 
@@ -78,9 +141,15 @@ const App = () => {
 
           <input name="Social" value={social} onChange={e => setSocial(e.target.value)} />
 
-          <button id="add_social" onClick={() => dispatch({ type: "ADD_SOCIAL", payload: social })}>Add</button>
+          <button id="add_social" onClick={() => dispatch(addSocial(social))}>Add</button>
 
           <div>{state.social.length}</div>
+          
+          {/* Navigation buttons */}
+          <div className="navigation-buttons">
+            <button id="back" onClick={() => dispatch(backPage())}>Back</button>
+            <button id="next" onClick={() => dispatch(nextPage())}>Next</button>
+          </div>
         </div>
       )}
 
@@ -88,12 +157,13 @@ const App = () => {
         <div>
           <h2>Final Resume</h2>
           <pre>{JSON.stringify(state, null, 2)}</pre>
+          
+          {/* Navigation buttons */}
+          <div className="navigation-buttons">
+            <button id="back" onClick={() => dispatch(backPage())}>Back</button>
+          </div>
         </div>
       )}
-
-      <div className="makeStyles-footer-15">
-        <button className="MuiButton-contained" onClick={() => dispatch({ type: "NEXT" })}>Next</button>
-      </div>
     </div>
   );
 };
