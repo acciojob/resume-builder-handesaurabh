@@ -55,19 +55,21 @@ const App = () => {
           <input name="college" value={education.college || ""} onChange={e => setEducation({ ...education, college: e.target.value })} />
           <input name="percentage" value={education.percentage || ""} onChange={e => setEducation({ ...education, percentage: e.target.value })} />
 
-          <button id="add_education" onClick={() => dispatch(addEducation(education))}>Add</button>
+          <button id="add_education" onClick={() => {
+            dispatch(addEducation(education));
+            setEducation({});
+          }}>Add</button>
 
-          {/* Display education entries with delete buttons */}
           <div>
             {state.education.map((edu, index) => (
               <div key={index} className="entry-item">
                 <span>{edu.courseName} - {edu.college}</span>
-                <button id={`delete-${index}`} onClick={() => dispatch(deleteEducation(index))}>Delete</button>
+                <button id="delete" onClick={() => dispatch(deleteEducation(index))}>Delete</button>
               </div>
             ))}
           </div>
 
-          <div id="education-count">{state.education.length}</div>
+          <input value={state.education.length} readOnly />
         </div>
       )}
 
@@ -77,19 +79,21 @@ const App = () => {
 
           <input name="skill" value={skill} onChange={e => setSkill(e.target.value)} />
 
-          <button id="add_skill" onClick={() => dispatch(addSkill(skill))}>Add</button>
+          <button id="add_skill" onClick={() => {
+            dispatch(addSkill(skill));
+            setSkill("");
+          }}>Add</button>
 
-          {/* Display skills with delete buttons */}
           <div>
-            {state.skills.map((skill, index) => (
+            {state.skills.map((s, index) => (
               <div key={index} className="entry-item">
-                <span>{skill}</span>
-                <button id={`delete_skill-${index}`} onClick={() => dispatch(deleteSkill(index))}>Delete</button>
+                <span>{s}</span>
+                <button id="delete_skill" onClick={() => dispatch(deleteSkill(index))}>Delete</button>
               </div>
             ))}
           </div>
 
-          <div id="skills-count">{state.skills.length}</div>
+          <input value={state.skills.length} readOnly />
         </div>
       )}
 
@@ -101,19 +105,21 @@ const App = () => {
           <input name="techStack" value={project.techStack} onChange={e => setProject({ ...project, techStack: e.target.value })} />
           <textarea name="description" value={project.description} onChange={e => setProject({ ...project, description: e.target.value })} />
 
-          <button id="add_project" onClick={() => dispatch(addProject(project))}>Add</button>
+          <button id="add_project" onClick={() => {
+            dispatch(addProject(project));
+            setProject({ projectName: "", techStack: "", description: "" });
+          }}>Add</button>
 
-          {/* Display projects with delete buttons */}
           <div>
             {state.projects.map((proj, index) => (
               <div key={index} className="entry-item">
                 <span>{proj.projectName} - {proj.techStack}</span>
-                <button id={`delete-project-${index}`} onClick={() => dispatch(deleteProject(index))}>Delete</button>
+                <button id="delete" onClick={() => dispatch(deleteProject(index))}>Delete</button>
               </div>
             ))}
           </div>
 
-          <div id="projects-count">{state.projects.length}</div>
+          <input value={state.projects.length} readOnly />
         </div>
       )}
 
@@ -123,9 +129,12 @@ const App = () => {
 
           <input name="Social" value={social} onChange={e => setSocial(e.target.value)} />
 
-          <button id="add_social" onClick={() => dispatch(addSocial(social))}>Add</button>
+          <button id="add_social" onClick={() => {
+            dispatch(addSocial(social));
+            setSocial("");
+          }}>Add</button>
 
-          <div id="social-count">{state.social.length}</div>
+          <input value={state.social.length} readOnly />
         </div>
       )}
 
@@ -136,7 +145,6 @@ const App = () => {
         </div>
       )}
 
-      {/* Global navigation buttons - only set of navigation buttons */}
       <div className="makeStyles-footer-15">
         {page > 0 && <button id="back" className="MuiButton-contained" onClick={() => dispatch(backPage())}>Back</button>}
         {page < 5 && <button id="next" className="MuiButton-contained" onClick={() => dispatch(nextPage())}>Next</button>}
