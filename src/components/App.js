@@ -62,12 +62,12 @@ const App = () => {
             {state.education.map((edu, index) => (
               <div key={index} className="entry-item">
                 <span>{edu.courseName} - {edu.college}</span>
-                <button id="delete" onClick={() => dispatch(deleteEducation(index))}>Delete</button>
+                <button id={`delete_education_${index}`} onClick={() => dispatch(deleteEducation(index))}>Delete</button>
               </div>
             ))}
           </div>
 
-          <div>{state.education.length}</div>
+          <div id="education_count">{state.education.length}</div>
         </div>
       )}
 
@@ -89,7 +89,7 @@ const App = () => {
             ))}
           </div>
 
-          <div>{state.skills.length}</div>
+          <div id="skill_count">{state.skills.length}</div>
         </div>
       )}
 
@@ -108,12 +108,12 @@ const App = () => {
             {state.projects.map((proj, index) => (
               <div key={index} className="entry-item">
                 <span>{proj.projectName} - {proj.techStack}</span>
-                <button id="delete" onClick={() => dispatch(deleteProject(index))}>Delete</button>
+                <button id={`delete_project_${index}`} onClick={() => dispatch(deleteProject(index))}>Delete</button>
               </div>
             ))}
           </div>
 
-          <div>{state.projects.length}</div>
+          <div id="project_count">{state.projects.length}</div>
         </div>
       )}
 
@@ -125,7 +125,7 @@ const App = () => {
 
           <button id="add_social" onClick={() => dispatch(addSocial(social))}>Add</button>
 
-          <div>{state.social.length}</div>
+          <div id="social_count">{state.social.length}</div>
         </div>
       )}
 
