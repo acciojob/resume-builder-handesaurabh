@@ -68,12 +68,6 @@ const App = () => {
           </div>
 
           <div>{state.education.length}</div>
-          
-          {/* Navigation buttons */}
-          <div className="navigation-buttons">
-            <button id="back" onClick={() => dispatch(backPage())}>Back</button>
-            <button id="next" onClick={() => dispatch(nextPage())}>Next</button>
-          </div>
         </div>
       )}
 
@@ -96,12 +90,6 @@ const App = () => {
           </div>
 
           <div>{state.skills.length}</div>
-          
-          {/* Navigation buttons */}
-          <div className="navigation-buttons">
-            <button id="back" onClick={() => dispatch(backPage())}>Back</button>
-            <button id="next" onClick={() => dispatch(nextPage())}>Next</button>
-          </div>
         </div>
       )}
 
@@ -126,12 +114,6 @@ const App = () => {
           </div>
 
           <div>{state.projects.length}</div>
-          
-          {/* Navigation buttons */}
-          <div className="navigation-buttons">
-            <button id="back" onClick={() => dispatch(backPage())}>Back</button>
-            <button id="next" onClick={() => dispatch(nextPage())}>Next</button>
-          </div>
         </div>
       )}
 
@@ -144,12 +126,6 @@ const App = () => {
           <button id="add_social" onClick={() => dispatch(addSocial(social))}>Add</button>
 
           <div>{state.social.length}</div>
-          
-          {/* Navigation buttons */}
-          <div className="navigation-buttons">
-            <button id="back" onClick={() => dispatch(backPage())}>Back</button>
-            <button id="next" onClick={() => dispatch(nextPage())}>Next</button>
-          </div>
         </div>
       )}
 
@@ -157,13 +133,14 @@ const App = () => {
         <div>
           <h2>Final Resume</h2>
           <pre>{JSON.stringify(state, null, 2)}</pre>
-          
-          {/* Navigation buttons */}
-          <div className="navigation-buttons">
-            <button id="back" onClick={() => dispatch(backPage())}>Back</button>
-          </div>
         </div>
       )}
+
+      {/* Global navigation buttons - restored from original code */}
+      <div className="makeStyles-footer-15">
+        {page > 0 && <button id="back" className="MuiButton-contained" onClick={() => dispatch(backPage())}>Back</button>}
+        {page < 5 && <button id="next" className="MuiButton-contained" onClick={() => dispatch(nextPage())}>Next</button>}
+      </div>
     </div>
   );
 };
