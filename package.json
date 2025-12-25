@@ -5,11 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --no-color 2>output.txt",
-<<<<<<< HEAD
-    "start": "webpack-dev-server --mode development --watch --hot",
-=======
     "start": "webpack-dev-server --mode development --watch --open --hot",
->>>>>>> 121fc55dc5b3c80929c71c82d50a047462bff299
     "build": "webpack --mode production"
   },
   "keywords": [],
@@ -21,7 +17,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "redux": "^4.2.1",
-"react-redux": "^7.2.6",
+    "react-redux": "^7.2.6",
     "style-loader": "^1.2.1",
     "webpack-cli": "^3.3.12",
     "cypress": "^9.5.0"
