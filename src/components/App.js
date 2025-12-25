@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+<<<<<<< HEAD
 import {
   nextPage,
   backPage,
@@ -11,6 +12,19 @@ import {
   addProject,
   deleteProject,
   addSocial
+=======
+import { 
+  nextPage, 
+  backPage, 
+  saveProfile, 
+  addEducation, 
+  deleteEducation, 
+  addSkill, 
+  deleteSkill, 
+  addProject, 
+  deleteProject, 
+  addSocial 
+>>>>>>> 121fc55dc5b3c80929c71c82d50a047462bff299
 } from "../actions";
 import "./../styles/App.css";
 
@@ -64,12 +78,20 @@ const App = () => {
             {state.education.map((edu, index) => (
               <div key={index} className="entry-item">
                 <span>{edu.courseName} - {edu.college}</span>
+<<<<<<< HEAD
                 <button id={`delete_education_${index}`} onClick={() => dispatch(deleteEducation(index))}>Delete</button>
+=======
+                <button id="delete" onClick={() => dispatch(deleteEducation(index))}>Delete</button>
+>>>>>>> 121fc55dc5b3c80929c71c82d50a047462bff299
               </div>
             ))}
           </div>
 
+<<<<<<< HEAD
           <span id="education_count">{state.education.length}</span>
+=======
+          <input value={state.education.length} readOnly />
+>>>>>>> 121fc55dc5b3c80929c71c82d50a047462bff299
         </div>
       )}
 
@@ -88,12 +110,20 @@ const App = () => {
             {state.skills.map((s, index) => (
               <div key={index} className="entry-item">
                 <span>{s}</span>
+<<<<<<< HEAD
                 <button id={`delete_skill_${index}`} onClick={() => dispatch(deleteSkill(index))}>Delete</button>
+=======
+                <button id="delete_skill" onClick={() => dispatch(deleteSkill(index))}>Delete</button>
+>>>>>>> 121fc55dc5b3c80929c71c82d50a047462bff299
               </div>
             ))}
           </div>
 
+<<<<<<< HEAD
           <span id="skills_count">{state.skills.length}</span>
+=======
+          <input value={state.skills.length} readOnly />
+>>>>>>> 121fc55dc5b3c80929c71c82d50a047462bff299
         </div>
       )}
 
@@ -114,12 +144,20 @@ const App = () => {
             {state.projects.map((proj, index) => (
               <div key={index} className="entry-item">
                 <span>{proj.projectName} - {proj.techStack}</span>
+<<<<<<< HEAD
                 <button id={`delete_project_${index}`} onClick={() => dispatch(deleteProject(index))}>Delete</button>
+=======
+                <button id="delete" onClick={() => dispatch(deleteProject(index))}>Delete</button>
+>>>>>>> 121fc55dc5b3c80929c71c82d50a047462bff299
               </div>
             ))}
           </div>
 
+<<<<<<< HEAD
           <span id="projects_count">{state.projects.length}</span>
+=======
+          <input value={state.projects.length} readOnly />
+>>>>>>> 121fc55dc5b3c80929c71c82d50a047462bff299
         </div>
       )}
 
@@ -134,7 +172,11 @@ const App = () => {
             setSocial("");
           }}>Add</button>
 
+<<<<<<< HEAD
           <span id="social_count">{state.social.length}</span>
+=======
+          <input value={state.social.length} readOnly />
+>>>>>>> 121fc55dc5b3c80929c71c82d50a047462bff299
         </div>
       )}
 
