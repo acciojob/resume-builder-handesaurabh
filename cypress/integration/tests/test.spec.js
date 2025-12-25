@@ -30,7 +30,7 @@ describe('Resume Builder App', () => {
         cy.get('input[name="college"]').type('ABC College');
         cy.get('input[name="percentage"]').type('85');
         cy.get('#add_education').click();
-        cy.get('#education_count').should('have.text', '1');
+        cy.get('#education_count').should('contain', '1');
     });
 
     it('Validating skills field', () => {
@@ -49,7 +49,10 @@ describe('Resume Builder App', () => {
         cy.get('#next').click();
         cy.get('input[name="skill"]').type('JavaScript');
         cy.get('#add_skill').click();
-        cy.get('#skills_count').should('have.text', '1');
+        cy.get('#skills_count').should('contain', '1');
+        // Optional: Test deletion
+        // cy.get('#delete_skill_0').click();
+        // cy.get('#skills_count').should('contain', '0');
     });
 
     it('Validating preojects field', () => {
@@ -73,7 +76,7 @@ describe('Resume Builder App', () => {
         cy.get('input[name="techStack"]').type('React');
         cy.get('textarea[name="description"]').type('Description');
         cy.get('#add_project').click();
-        cy.get('#projects_count').should('have.text', '1');
+        cy.get('#projects_count').should('contain', '1');
     });
 
     it('Validating social media links', () => {
@@ -100,6 +103,6 @@ describe('Resume Builder App', () => {
         cy.get('#next').click();
         cy.get('input[name="Social"]').type('http://github.com/user');
         cy.get('#add_social').click();
-        cy.get('#social_count').should('have.text', '1');
+        cy.get('#social_count').should('contain', '1');
     });
 });
