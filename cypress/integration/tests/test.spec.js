@@ -22,60 +22,60 @@ describe('Resume Builder App', () => {
         fillProfileDetails();
         cy.get('#save_continue').click();
         cy.get('h2').contains('Add your Education Details').should('be.visible');
-        
+
         cy.get('input[name="courseName"]').type('BSc');
         cy.get('input[name="completionYear"]').type('2020');
         cy.get('input[name="college"]').type('ABC College');
         cy.get('input[name="percentage"]').type('85');
-        cy.get('#add_education').click();
-        
-        cy.get('#education_count').should('contain', '1');
+        cy.get('#add_education').first().click();
+
+        cy.get('#education_count').should('have.text', '1');
         cy.get('.entry-item').should('have.length', 1);
     });
 
     it('Validating skills field', () => {
         fillProfileAndEducation();
-        
+
         cy.get('#next').click();
         cy.get('h2').contains('Skills').should('be.visible');
-        
+
         cy.get('input[name="skill"]').clear().type('JavaScript');
         cy.get('#add_skill').click();
-        
-        cy.get('#skills_count').should('contain', '1');
+
+        cy.get('#skills_count').should('have.text', '1');
     });
 
     it('Validating preojects field', () => {
         fillProfileAndEducation();
-        
+
         cy.get('#next').click();
         cy.get('h2').contains('Skills').should('be.visible');
-        
+
         cy.get('input[name="skill"]').clear().type('JavaScript');
         cy.get('#add_skill').click();
-        cy.get('#skills_count').should('contain', '1');
-        
+        cy.get('#skills_count').should('have.text', '1');
+
         cy.get('#next').click();
         cy.get('h2').contains('Add your Mini Projects').should('be.visible');
-        
+
         cy.get('input[name="projectName"]').clear().type('Project 1');
         cy.get('input[name="techStack"]').clear().type('React');
         cy.get('textarea[name="description"]').clear().type('Description');
         cy.get('#add_project').click();
-        
-        cy.get('#projects_count').should('contain', '1');
+
+        cy.get('#projects_count').should('have.text', '1');
     });
 
     it('Validating social media links', () => {
         fillProfileEducationSkillsAndProjects();
-        
+
         cy.get('#next').click();
         cy.get('h2').contains('Social Media Links').should('be.visible');
-        
+
         cy.get('input[name="Social"]').clear().type('http://github.com/user');
         cy.get('#add_social').click();
-        
-        cy.get('#social_count').should('contain', '1');
+
+        cy.get('#social_count').should('have.text', '1');
     });
 });
 
@@ -91,31 +91,31 @@ function fillProfileAndEducation() {
     fillProfileDetails();
     cy.get('#save_continue').click();
     cy.get('h2').contains('Add your Education Details').should('be.visible');
-    
+
     cy.get('input[name="courseName"]').clear().type('BSc');
     cy.get('input[name="completionYear"]').clear().type('2020');
     cy.get('input[name="college"]').clear().type('ABC College');
     cy.get('input[name="percentage"]').clear().type('85');
     cy.get('#add_education').click();
-    cy.get('#education_count').should('contain', '1');
+    cy.get('#education_count').should('have.text', '1');
 }
 
 function fillProfileEducationSkillsAndProjects() {
     fillProfileAndEducation();
-    
+
     cy.get('#next').click();
     cy.get('h2').contains('Skills').should('be.visible');
-    
+
     cy.get('input[name="skill"]').clear().type('JavaScript');
     cy.get('#add_skill').click();
-    cy.get('#skills_count').should('contain', '1');
-    
+    cy.get('#skills_count').should('have.text', '1');
+
     cy.get('#next').click();
     cy.get('h2').contains('Add your Mini Projects').should('be.visible');
-    
+
     cy.get('input[name="projectName"]').clear().type('Project 1');
     cy.get('input[name="techStack"]').clear().type('React');
     cy.get('textarea[name="description"]').clear().type('Description');
     cy.get('#add_project').click();
-    cy.get('#projects_count').should('contain', '1');
+    cy.get('#projects_count').should('have.text', '1');
 }
