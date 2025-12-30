@@ -56,7 +56,7 @@ const App = (props) => {
           <button id="add_education" onClick={() => {
             addEducation(localEducation);
             setLocalEducation({});
-          }}>Add Education</button>
+          }}>Add Edu</button>
 
           <div>
             {education.map((edu, index) => (

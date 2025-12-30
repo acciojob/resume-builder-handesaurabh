@@ -27,7 +27,7 @@ describe('Resume Builder App', () => {
         cy.get('input[name="completionYear"]').clear().type('2020');
         cy.get('input[name="college"]').clear().type('ABC College');
         cy.get('input[name="percentage"]').clear().type('85');
-        cy.get('#add_education').click();
+        cy.get('button').contains('Add').click();
         cy.wait(100);
 
         cy.get('#education_count').should('have.text', '1');
@@ -100,7 +100,7 @@ function fillProfileAndEducation() {
     cy.get('input[name="completionYear"]').clear().type('2020');
     cy.get('input[name="college"]').clear().type('ABC College');
     cy.get('input[name="percentage"]').clear().type('85');
-    cy.get('#add_education').click();
+    cy.get('button').contains('Add').click();
     cy.get('#education_count').should('have.text', '1');
 }
 
