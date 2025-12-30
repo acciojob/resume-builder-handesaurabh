@@ -15,13 +15,13 @@ import {
 import "./../styles/App.css";
 
 const App = (props) => {
-  const { page, state, nextPage, backPage, saveProfile, addEducation, deleteEducation, addSkill, deleteSkill, addProject, deleteProject, addSocial } = props;
+  const { page, education, skills, projects, social, profile, nextPage, backPage, saveProfile, addEducation, deleteEducation, addSkill, deleteSkill, addProject, deleteProject, addSocial } = props;
 
-  const [profile, setProfile] = useState({});
-  const [education, setEducation] = useState({});
+  const [localProfile, setLocalProfile] = useState({});
+  const [localEducation, setLocalEducation] = useState({});
   const [skill, setSkill] = useState("");
   const [project, setProject] = useState({ projectName: "", techStack: "", description: "" });
-  const [social, setSocial] = useState("");
+  const [localSocial, setLocalSocial] = useState("");
 
   return (
     <div>
@@ -31,14 +31,14 @@ const App = (props) => {
         <div>
           <h2>Add your profile details</h2>
 
-          <input name="fname" value={profile.fname || ""} onChange={e => setProfile({ ...profile, fname: e.target.value })} />
-          <input name="lname" value={profile.lname || ""} onChange={e => setProfile({ ...profile, lname: e.target.value })} />
-          <input name="phone" value={profile.phone || ""} onChange={e => setProfile({ ...profile, phone: e.target.value })} />
-          <input name="address" value={profile.address || ""} onChange={e => setProfile({ ...profile, address: e.target.value })} />
-          <input name="url" value={profile.url || ""} onChange={e => setProfile({ ...profile, url: e.target.value })} />
+          <input name="fname" value={localProfile.fname || ""} onChange={e => setLocalProfile({ ...localProfile, fname: e.target.value })} />
+          <input name="lname" value={localProfile.lname || ""} onChange={e => setLocalProfile({ ...localProfile, lname: e.target.value })} />
+          <input name="phone" value={localProfile.phone || ""} onChange={e => setLocalProfile({ ...localProfile, phone: e.target.value })} />
+          <input name="address" value={localProfile.address || ""} onChange={e => setLocalProfile({ ...localProfile, address: e.target.value })} />
+          <input name="url" value={localProfile.url || ""} onChange={e => setLocalProfile({ ...localProfile, url: e.target.value })} />
 
           <button id="save_continue" onClick={() => {
-            saveProfile(profile);
+            saveProfile(localProfile);
             nextPage();
           }}>Save & Continue</button>
         </div>
@@ -48,18 +48,18 @@ const App = (props) => {
         <div>
           <h2>Add your Education Details</h2>
 
-          <input name="courseName" value={education.courseName || ""} onChange={e => setEducation({ ...education, courseName: e.target.value })} />
-          <input name="completionYear" value={education.completionYear || ""} onChange={e => setEducation({ ...education, completionYear: e.target.value })} />
-          <input name="college" value={education.college || ""} onChange={e => setEducation({ ...education, college: e.target.value })} />
-          <input name="percentage" value={education.percentage || ""} onChange={e => setEducation({ ...education, percentage: e.target.value })} />
+          <input name="courseName" value={localEducation.courseName || ""} onChange={e => setLocalEducation({ ...localEducation, courseName: e.target.value })} />
+          <input name="completionYear" value={localEducation.completionYear || ""} onChange={e => setLocalEducation({ ...localEducation, completionYear: e.target.value })} />
+          <input name="college" value={localEducation.college || ""} onChange={e => setLocalEducation({ ...localEducation, college: e.target.value })} />
+          <input name="percentage" value={localEducation.percentage || ""} onChange={e => setLocalEducation({ ...localEducation, percentage: e.target.value })} />
 
           <button id="add_education" onClick={() => {
-            addEducation(education);
-            setEducation({});
+            addEducation(localEducation);
+            setLocalEducation({});
           }}>Add Education</button>
 
           <div>
-            {state.education.map((edu, index) => (
+            {education.map((edu, index) => (
               <div key={index} className="entry-item">
                 <span>{edu.courseName} - {edu.college}</span>
                 <button id={`delete_education_${index}`} onClick={() => deleteEducation(index)}>Delete</button>
@@ -67,7 +67,7 @@ const App = (props) => {
             ))}
           </div>
 
-          <span id="education_count">{state.education.length}</span>
+          <span id="education_count">{education.length}</span>
         </div>
       )}
 
@@ -80,10 +80,10 @@ const App = (props) => {
           <button id="add_skill" onClick={() => {
             addSkill(skill);
             setSkill("");
-          }}>Add Skill</button>
+          }}>Add</button>
 
           <div>
-            {state.skills.map((s, index) => (
+            {skills.map((s, index) => (
               <div key={index} className="entry-item">
                 <span>{s}</span>
                 <button id={`delete_skill_${index}`} onClick={() => deleteSkill(index)}>Delete</button>
@@ -91,7 +91,7 @@ const App = (props) => {
             ))}
           </div>
 
-          <span id="skills_count">{state.skills.length}</span>
+          <span id="skills_count">{skills.length}</span>
         </div>
       )}
 
@@ -106,10 +106,10 @@ const App = (props) => {
           <button id="add_project" onClick={() => {
             addProject(project);
             setProject({ projectName: "", techStack: "", description: "" });
-          }}>Add Project</button>
+          }}>Add</button>
 
           <div>
-            {state.projects.map((proj, index) => (
+            {projects.map((proj, index) => (
               <div key={index} className="entry-item">
                 <span>{proj.projectName} - {proj.techStack}</span>
                 <button id={`delete_project_${index}`} onClick={() => deleteProject(index)}>Delete</button>
@@ -117,7 +117,7 @@ const App = (props) => {
             ))}
           </div>
 
-          <span id="projects_count">{state.projects.length}</span>
+          <span id="projects_count">{projects.length}</span>
         </div>
       )}
 
@@ -125,14 +125,14 @@ const App = (props) => {
         <div>
           <h2>Social Media Links</h2>
 
-          <input name="Social" value={social} onChange={e => setSocial(e.target.value)} />
+          <input name="Social" value={localSocial} onChange={e => setLocalSocial(e.target.value)} />
 
           <button id="add_social" onClick={() => {
-            addSocial(social);
-            setSocial("");
-          }}>Add Link</button>
+            addSocial(localSocial);
+            setLocalSocial("");
+          }}>Add</button>
 
-          <span id="social_count">{state.social.length}</span>
+          <span id="social_count">{social.length}</span>
         </div>
       )}
 
@@ -141,18 +141,18 @@ const App = (props) => {
           <h2>Final Resume</h2>
           <div className="resume">
             <header className="resume-header">
-              <h1>{state.profile.fname} {state.profile.lname}</h1>
+              <h1>{profile.fname} {profile.lname}</h1>
               <div className="contact-info">
-                {state.profile.phone && <p>Phone: {state.profile.phone}</p>}
-                {state.profile.address && <p>Address: {state.profile.address}</p>}
-                {state.profile.url && <p>Website: {state.profile.url}</p>}
+                {profile.phone && <p>Phone: {profile.phone}</p>}
+                {profile.address && <p>Address: {profile.address}</p>}
+                {profile.url && <p>Website: {profile.url}</p>}
               </div>
             </header>
 
-            {state.education.length > 0 && (
+            {education.length > 0 && (
               <section className="resume-section">
                 <h3>Education</h3>
-                {state.education.map((edu, index) => (
+                {education.map((edu, index) => (
                   <div key={index} className="education-item">
                     <h4>{edu.courseName}</h4>
                     {edu.college && <p>{edu.college}</p>}
@@ -163,21 +163,21 @@ const App = (props) => {
               </section>
             )}
 
-            {state.skills.length > 0 && (
+            {skills.length > 0 && (
               <section className="resume-section">
                 <h3>Skills</h3>
                 <ul className="skills-list">
-                  {state.skills.map((skill, index) => (
+                  {skills.map((skill, index) => (
                     <li key={index}>{skill}</li>
                   ))}
                 </ul>
               </section>
             )}
 
-            {state.projects.length > 0 && (
+            {projects.length > 0 && (
               <section className="resume-section">
                 <h3>Projects</h3>
-                {state.projects.map((project, index) => (
+                {projects.map((project, index) => (
                   <div key={index} className="project-item">
                     <h4>{project.projectName}</h4>
                     {project.techStack && <p><strong>Tech Stack:</strong> {project.techStack}</p>}
@@ -187,11 +187,11 @@ const App = (props) => {
               </section>
             )}
 
-            {state.social.length > 0 && (
+            {social.length > 0 && (
               <section className="resume-section">
                 <h3>Social Media Links</h3>
                 <ul className="social-list">
-                  {state.social.map((link, index) => (
+                  {social.map((link, index) => (
                     <li key={index}><a href={link} target="_blank" rel="noopener noreferrer">{link}</a></li>
                   ))}
                 </ul>
@@ -211,7 +211,11 @@ const App = (props) => {
 
 const mapStateToProps = (state) => ({
   page: state.page,
-  state: state
+  education: state.education,
+  skills: state.skills,
+  projects: state.projects,
+  social: state.social,
+  profile: state.profile
 });
 
 const mapDispatchToProps = {
