@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import {
   nextPage,
   backPage,
@@ -14,10 +14,8 @@ import {
 } from "../actions";
 import "./../styles/App.css";
 
-const App = () => {
-  const dispatch = useDispatch();
-  const page = useSelector(state => state.page);
-  const state = useSelector(state => state);
+const App = (props) => {
+  const { page, state, nextPage, backPage, saveProfile, addEducation, deleteEducation, addSkill, deleteSkill, addProject, deleteProject, addSocial } = props;
 
   const [profile, setProfile] = useState({});
   const [education, setEducation] = useState({});
@@ -40,8 +38,8 @@ const App = () => {
           <input name="url" value={profile.url || ""} onChange={e => setProfile({ ...profile, url: e.target.value })} />
 
           <button id="save_continue" onClick={() => {
-            dispatch(saveProfile(profile));
-            dispatch(nextPage());
+            saveProfile(profile);
+            nextPage();
           }}>Save & Continue</button>
         </div>
       )}
@@ -56,15 +54,15 @@ const App = () => {
           <input name="percentage" value={education.percentage || ""} onChange={e => setEducation({ ...education, percentage: e.target.value })} />
 
           <button id="add_education" onClick={() => {
-            dispatch(addEducation(education));
+            addEducation(education);
             setEducation({});
-          }}>Add</button>
+          }}>Add Education</button>
 
           <div>
             {state.education.map((edu, index) => (
               <div key={index} className="entry-item">
                 <span>{edu.courseName} - {edu.college}</span>
-                <button id={`delete_education_${index}`} onClick={() => dispatch(deleteEducation(index))}>Delete</button>
+                <button id={`delete_education_${index}`} onClick={() => deleteEducation(index)}>Delete</button>
               </div>
             ))}
           </div>
@@ -80,15 +78,15 @@ const App = () => {
           <input name="skill" value={skill} onChange={e => setSkill(e.target.value)} />
 
           <button id="add_skill" onClick={() => {
-            dispatch(addSkill(skill));
+            addSkill(skill);
             setSkill("");
-          }}>Add</button>
+          }}>Add Skill</button>
 
           <div>
             {state.skills.map((s, index) => (
               <div key={index} className="entry-item">
                 <span>{s}</span>
-                <button id={`delete_skill_${index}`} onClick={() => dispatch(deleteSkill(index))}>Delete</button>
+                <button id={`delete_skill_${index}`} onClick={() => deleteSkill(index)}>Delete</button>
               </div>
             ))}
           </div>
@@ -106,15 +104,15 @@ const App = () => {
           <textarea name="description" value={project.description} onChange={e => setProject({ ...project, description: e.target.value })} />
 
           <button id="add_project" onClick={() => {
-            dispatch(addProject(project));
+            addProject(project);
             setProject({ projectName: "", techStack: "", description: "" });
-          }}>Add</button>
+          }}>Add Project</button>
 
           <div>
             {state.projects.map((proj, index) => (
               <div key={index} className="entry-item">
                 <span>{proj.projectName} - {proj.techStack}</span>
-                <button id={`delete_project_${index}`} onClick={() => dispatch(deleteProject(index))}>Delete</button>
+                <button id={`delete_project_${index}`} onClick={() => deleteProject(index)}>Delete</button>
               </div>
             ))}
           </div>
@@ -130,9 +128,9 @@ const App = () => {
           <input name="Social" value={social} onChange={e => setSocial(e.target.value)} />
 
           <button id="add_social" onClick={() => {
-            dispatch(addSocial(social));
+            addSocial(social);
             setSocial("");
-          }}>Add</button>
+          }}>Add Link</button>
 
           <span id="social_count">{state.social.length}</span>
         </div>
@@ -146,11 +144,29 @@ const App = () => {
       )}
 
       <div className="makeStyles-footer-15">
-        {page > 0 && <button id="back" className="MuiButton-contained" onClick={() => dispatch(backPage())}>Back</button>}
-        {page < 5 && <button id="next" className="MuiButton-contained" onClick={() => dispatch(nextPage())}>Next</button>}
+        {page > 0 && <button id="back" className="MuiButton-contained" onClick={() => backPage()}>Back</button>}
+        {page < 5 && <button id="next" className="MuiButton-contained" onClick={() => nextPage()}>Next</button>}
       </div>
     </div>
   );
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  page: state.page,
+  state: state
+});
+
+const mapDispatchToProps = {
+  nextPage,
+  backPage,
+  saveProfile,
+  addEducation,
+  deleteEducation,
+  addSkill,
+  deleteSkill,
+  addProject,
+  deleteProject,
+  addSocial
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
