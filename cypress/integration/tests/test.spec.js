@@ -23,11 +23,11 @@ describe('Resume Builder App', () => {
         cy.get('#save_continue').click();
         cy.get('h2').contains('Add your Education Details').should('be.visible');
 
-        cy.get('input[name="courseName"]').type('BSc');
-        cy.get('input[name="completionYear"]').type('2020');
-        cy.get('input[name="college"]').type('ABC College');
-        cy.get('input[name="percentage"]').type('85');
-        cy.get('button').contains('Add').click();
+        cy.get('input[name="courseName"]').clear().type('BSc');
+        cy.get('input[name="completionYear"]').clear().type('2020');
+        cy.get('input[name="college"]').clear().type('ABC College');
+        cy.get('input[name="percentage"]').clear().type('85');
+        cy.get('#add_education').click();
         cy.wait(100);
 
         cy.get('#education_count').should('have.text', '1');
@@ -100,7 +100,7 @@ function fillProfileAndEducation() {
     cy.get('input[name="completionYear"]').clear().type('2020');
     cy.get('input[name="college"]').clear().type('ABC College');
     cy.get('input[name="percentage"]').clear().type('85');
-    cy.get('button').contains('Add').click();
+    cy.get('#add_education').click();
     cy.get('#education_count').should('have.text', '1');
 }
 
