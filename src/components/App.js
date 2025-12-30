@@ -137,9 +137,67 @@ const App = (props) => {
       )}
 
       {page === 5 && (
-        <div>
+        <div className="resume-container">
           <h2>Final Resume</h2>
-          <pre>{JSON.stringify(state, null, 2)}</pre>
+          <div className="resume">
+            <header className="resume-header">
+              <h1>{state.profile.fname} {state.profile.lname}</h1>
+              <div className="contact-info">
+                {state.profile.phone && <p>Phone: {state.profile.phone}</p>}
+                {state.profile.address && <p>Address: {state.profile.address}</p>}
+                {state.profile.url && <p>Website: {state.profile.url}</p>}
+              </div>
+            </header>
+
+            {state.education.length > 0 && (
+              <section className="resume-section">
+                <h3>Education</h3>
+                {state.education.map((edu, index) => (
+                  <div key={index} className="education-item">
+                    <h4>{edu.courseName}</h4>
+                    {edu.college && <p>{edu.college}</p>}
+                    {edu.completionYear && <p>Year: {edu.completionYear}</p>}
+                    {edu.percentage && <p>Percentage: {edu.percentage}%</p>}
+                  </div>
+                ))}
+              </section>
+            )}
+
+            {state.skills.length > 0 && (
+              <section className="resume-section">
+                <h3>Skills</h3>
+                <ul className="skills-list">
+                  {state.skills.map((skill, index) => (
+                    <li key={index}>{skill}</li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            {state.projects.length > 0 && (
+              <section className="resume-section">
+                <h3>Projects</h3>
+                {state.projects.map((project, index) => (
+                  <div key={index} className="project-item">
+                    <h4>{project.projectName}</h4>
+                    {project.techStack && <p><strong>Tech Stack:</strong> {project.techStack}</p>}
+                    {project.description && <p>{project.description}</p>}
+                  </div>
+                ))}
+              </section>
+            )}
+
+            {state.social.length > 0 && (
+              <section className="resume-section">
+                <h3>Social Media Links</h3>
+                <ul className="social-list">
+                  {state.social.map((link, index) => (
+                    <li key={index}><a href={link} target="_blank" rel="noopener noreferrer">{link}</a></li>
+                  ))}
+                </ul>
+              </section>
+            )}
+          </div>
         </div>
       )}
 
