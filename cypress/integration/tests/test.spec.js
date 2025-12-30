@@ -27,7 +27,8 @@ describe('Resume Builder App', () => {
         cy.get('input[name="completionYear"]').type('2020');
         cy.get('input[name="college"]').type('ABC College');
         cy.get('input[name="percentage"]').type('85');
-        cy.get('#add_education').first().click();
+        cy.get('button').contains('Add').click();
+        cy.wait(100);
 
         cy.get('#education_count').should('have.text', '1');
         cy.get('.entry-item').should('have.length', 1);
@@ -41,6 +42,7 @@ describe('Resume Builder App', () => {
 
         cy.get('input[name="skill"]').clear().type('JavaScript');
         cy.get('#add_skill').click();
+        cy.wait(100);
 
         cy.get('#skills_count').should('have.text', '1');
     });
@@ -62,6 +64,7 @@ describe('Resume Builder App', () => {
         cy.get('input[name="techStack"]').clear().type('React');
         cy.get('textarea[name="description"]').clear().type('Description');
         cy.get('#add_project').click();
+        cy.wait(100);
 
         cy.get('#projects_count').should('have.text', '1');
     });
@@ -74,6 +77,7 @@ describe('Resume Builder App', () => {
 
         cy.get('input[name="Social"]').clear().type('http://github.com/user');
         cy.get('#add_social').click();
+        cy.wait(100);
 
         cy.get('#social_count').should('have.text', '1');
     });
@@ -96,7 +100,7 @@ function fillProfileAndEducation() {
     cy.get('input[name="completionYear"]').clear().type('2020');
     cy.get('input[name="college"]').clear().type('ABC College');
     cy.get('input[name="percentage"]').clear().type('85');
-    cy.get('#add_education').click();
+    cy.get('button').contains('Add').click();
     cy.get('#education_count').should('have.text', '1');
 }
 
