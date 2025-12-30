@@ -1,6 +1,6 @@
 describe('Resume Builder App', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:8080');
+        cy.visit('/');
     });
 
     it('should display the correct heading', () => {
