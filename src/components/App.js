@@ -48,7 +48,6 @@ const App = (props) => {
     <div>
       <h1>RESUME GENERATOR</h1>
 
-      {/* PAGE 0 — PROFILE */}
       {page === 0 && (
         <div>
           <h2>Add your profile details</h2>
@@ -101,7 +100,6 @@ const App = (props) => {
         </div>
       )}
 
-      {/* PAGE 1 — EDUCATION */}
       {page === 1 && (
         <div>
           <h2>Add your Education Details</h2>
@@ -175,7 +173,6 @@ const App = (props) => {
         </div>
       )}
 
-      {/* PAGE 2 — SKILLS */}
       {page === 2 && (
         <div>
           <h2>Skills</h2>
@@ -214,7 +211,6 @@ const App = (props) => {
         </div>
       )}
 
-      {/* PAGE 3 — PROJECTS */}
       {page === 3 && (
         <div>
           <h2>Add your Mini Projects</h2>
@@ -273,7 +269,6 @@ const App = (props) => {
         </div>
       )}
 
-      {/* PAGE 4 — SOCIAL */}
       {page === 4 && (
         <div>
           <h2>Social Media Links</h2>
@@ -306,7 +301,6 @@ const App = (props) => {
         </div>
       )}
 
-      {/* FOOTER */}
       <div className="makeStyles-footer-15">
         {page > 0 && (
           <button
