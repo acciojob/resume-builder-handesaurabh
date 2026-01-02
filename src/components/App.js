@@ -157,7 +157,7 @@ const App = (props) => {
 
           <div>
             {education.map((edu, index) => (
-              <div key={index}>
+              <div key={index} className="entry-item">
                 {edu.courseName}
                 <button
                   id={`delete_education_${index}`}
