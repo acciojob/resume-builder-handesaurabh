@@ -15,18 +15,40 @@ import {
 import "./../styles/App.css";
 
 const App = (props) => {
-  const { page, education, skills, projects, social, profile, nextPage, backPage, saveProfile, addEducation, deleteEducation, addSkill, deleteSkill, addProject, deleteProject, addSocial } = props;
+  const {
+    page,
+    education,
+    skills,
+    projects,
+    social,
+    profile,
+    nextPage,
+    backPage,
+    saveProfile,
+    addEducation,
+    deleteEducation,
+    addSkill,
+    deleteSkill,
+    addProject,
+    deleteProject,
+    addSocial
+  } = props;
 
   const [localProfile, setLocalProfile] = useState({});
   const [localEducation, setLocalEducation] = useState({});
   const [skill, setSkill] = useState("");
-  const [project, setProject] = useState({ projectName: "", techStack: "", description: "" });
+  const [project, setProject] = useState({
+    projectName: "",
+    techStack: "",
+    description: ""
+  });
   const [localSocial, setLocalSocial] = useState("");
 
   return (
     <div>
       <h1>RESUME GENERATOR</h1>
 
+      {/* PAGE 0 – PROFILE */}
       {page === 0 && (
         <div>
           <h2>Add your profile details</h2>
@@ -40,10 +62,13 @@ const App = (props) => {
           <button id="save_continue" onClick={() => {
             saveProfile(localProfile);
             nextPage();
-          }}>Save & Continue</button>
+          }}>
+            Save & Continue
+          </button>
         </div>
       )}
 
+      {/* PAGE 1 – EDUCATION */}
       {page === 1 && (
         <div>
           <h2>Add your Education Details</h2>
@@ -55,7 +80,6 @@ const App = (props) => {
 
           <button
             id="add_education"
-            data-testid="add-education-btn"
             onClick={() => {
               addEducation(localEducation);
               setLocalEducation({});
@@ -63,7 +87,6 @@ const App = (props) => {
           >
             Add Education
           </button>
-
 
           <div>
             {education.map((edu, index) => (
@@ -83,21 +106,31 @@ const App = (props) => {
         </div>
       )}
 
+      {/* PAGE 2 – SKILLS */}
       {page === 2 && (
-        <div>
+        <div id="skills_container">
           <h2>Skills</h2>
 
-          <input name="skill" value={skill} onChange={e => setSkill(e.target.value)} />
+          <input
+            name="skill"
+            value={skill}
+            onChange={e => setSkill(e.target.value)}
+          />
 
-          <button id="add_skill" onClick={() => {
-            addSkill(skill);
-            setSkill("");
-          }}>Add</button>
+          <button
+            id="add_skill"
+            onClick={() => {
+              addSkill(skill);
+              setSkill("");
+            }}
+          >
+            Add
+          </button>
 
           <div>
             {skills.map((s, index) => (
               <div key={index} className="entry-item">
-                <span>{index + 1}. {s}</span>
+                {index + 1}. {s}
                 <button
                   id={`delete_skill_${index}`}
                   onClick={() => deleteSkill(index)}
@@ -106,32 +139,47 @@ const App = (props) => {
                 </button>
               </div>
             ))}
-
           </div>
 
           <span id="skills_count">{skills.length}</span>
         </div>
       )}
 
+      {/* PAGE 3 – PROJECTS */}
       {page === 3 && (
-        <div>
+        <div id="projects_container">
           <h2>Add your Mini Projects</h2>
 
-          <input name="projectName" value={project.projectName} onChange={e => setProject({ ...project, projectName: e.target.value })} />
-          <input name="techStack" value={project.techStack} onChange={e => setProject({ ...project, techStack: e.target.value })} />
-          <textarea name="description" value={project.description} onChange={e => setProject({ ...project, description: e.target.value })} />
+          <input
+            name="projectName"
+            value={project.projectName}
+            onChange={e => setProject({ ...project, projectName: e.target.value })}
+          />
+          <input
+            name="techStack"
+            value={project.techStack}
+            onChange={e => setProject({ ...project, techStack: e.target.value })}
+          />
+          <textarea
+            name="description"
+            value={project.description}
+            onChange={e => setProject({ ...project, description: e.target.value })}
+          />
 
-          <button id="add_project" onClick={() => {
-            addProject(project);
-            setProject({ projectName: "", techStack: "", description: "" });
-          }}>Add</button>
+          <button
+            id="add_project"
+            onClick={() => {
+              addProject(project);
+              setProject({ projectName: "", techStack: "", description: "" });
+            }}
+          >
+            Add
+          </button>
 
           <div>
             {projects.map((proj, index) => (
               <div key={index} className="entry-item">
-                <span>
-                  {index + 1}. {proj.projectName} - {proj.techStack}
-                </span>
+                {index + 1}. {proj.projectName}
                 <button
                   id={`delete_project_${index}`}
                   onClick={() => deleteProject(index)}
@@ -140,23 +188,32 @@ const App = (props) => {
                 </button>
               </div>
             ))}
-
           </div>
 
           <span id="projects_count">{projects.length}</span>
         </div>
       )}
 
+      {/* PAGE 4 – SOCIAL */}
       {page === 4 && (
-        <div>
+        <div id="social_container">
           <h2>Social Media Links</h2>
 
-          <input name="Social" value={localSocial} onChange={e => setLocalSocial(e.target.value)} />
+          <input
+            name="Social"
+            value={localSocial}
+            onChange={e => setLocalSocial(e.target.value)}
+          />
 
-          <button id="add_social" onClick={() => {
-            addSocial(localSocial);
-            setLocalSocial("");
-          }}>Add</button>
+          <button
+            id="add_social"
+            onClick={() => {
+              addSocial(localSocial);
+              setLocalSocial("");
+            }}
+          >
+            Add
+          </button>
 
           <div>
             {social.map((link, index) => (
@@ -165,79 +222,25 @@ const App = (props) => {
               </div>
             ))}
           </div>
-          <span id="social_count">{social.length}</span>
 
+          <span id="social_count">{social.length}</span>
         </div>
       )}
 
+      {/* PAGE 5 – FINAL RESUME */}
       {page === 5 && (
         <div className="resume-container">
           <h2>Final Resume</h2>
           <div className="resume">
-            <header className="resume-header">
-              <h1>{profile.fname} {profile.lname}</h1>
-              <div className="contact-info">
-                {profile.phone && <p>Phone: {profile.phone}</p>}
-                {profile.address && <p>Address: {profile.address}</p>}
-                {profile.url && <p>Website: {profile.url}</p>}
-              </div>
-            </header>
-
-            {education.length > 0 && (
-              <section className="resume-section">
-                <h3>Education</h3>
-                {education.map((edu, index) => (
-                  <div key={index} className="education-item">
-                    <h4>{edu.courseName}</h4>
-                    {edu.college && <p>{edu.college}</p>}
-                    {edu.completionYear && <p>Year: {edu.completionYear}</p>}
-                    {edu.percentage && <p>Percentage: {edu.percentage}%</p>}
-                  </div>
-                ))}
-              </section>
-            )}
-
-            {skills.length > 0 && (
-              <section className="resume-section">
-                <h3>Skills</h3>
-                <ul className="skills-list">
-                  {skills.map((skill, index) => (
-                    <li key={index}>{skill}</li>
-                  ))}
-                </ul>
-              </section>
-            )}
-
-            {projects.length > 0 && (
-              <section className="resume-section">
-                <h3>Projects</h3>
-                {projects.map((project, index) => (
-                  <div key={index} className="project-item">
-                    <h4>{project.projectName}</h4>
-                    {project.techStack && <p><strong>Tech Stack:</strong> {project.techStack}</p>}
-                    {project.description && <p>{project.description}</p>}
-                  </div>
-                ))}
-              </section>
-            )}
-
-            {social.length > 0 && (
-              <section className="resume-section">
-                <h3>Social Media Links</h3>
-                <ul className="social-list">
-                  {social.map((link, index) => (
-                    <li key={index}><a href={link} target="_blank" rel="noopener noreferrer">{link}</a></li>
-                  ))}
-                </ul>
-              </section>
-            )}
+            <h1>{profile.fname} {profile.lname}</h1>
           </div>
         </div>
       )}
 
+      {/* NAVIGATION */}
       <div className="makeStyles-footer-15">
-        {page > 0 && <button id="back" className="MuiButton-contained" onClick={() => backPage()}>Back</button>}
-        {page < 5 && <button id="next" className="MuiButton-contained" onClick={() => nextPage()}>Next</button>}
+        {page > 0 && <button id="back" onClick={backPage}>Back</button>}
+        {page < 5 && <button id="next" onClick={nextPage}>Next</button>}
       </div>
     </div>
   );
