@@ -48,6 +48,12 @@ export default function reducer(state = initialState, action) {
     case "ADD_SOCIAL":
       return { ...state, social: [...state.social, action.payload] };
 
+    case "DEL_SOCIAL":
+      return {
+        ...state,
+        social: state.social.filter((_, i) => i !== action.payload)
+      };
+
     default:
       return state;
   }

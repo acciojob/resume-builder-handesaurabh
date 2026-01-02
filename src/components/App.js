@@ -10,7 +10,8 @@ import {
   deleteSkill,
   addProject,
   deleteProject,
-  addSocial
+  addSocial,
+  deleteSocial
 } from "../actions";
 import "./../styles/App.css";
 
@@ -31,7 +32,8 @@ const App = (props) => {
     deleteSkill,
     addProject,
     deleteProject,
-    addSocial
+    addSocial,
+    deleteSocial
   } = props;
 
   const [localProfile, setLocalProfile] = useState({});
@@ -166,10 +168,10 @@ const App = (props) => {
 
           <div>
             {education.map((edu, index) => (
-              <div key={index} className="entry-item" id={`education_entry_${index}`}>
+              <div key={index} className="entry-item" id={`education_${index + 1}`}>
                 {edu.courseName}
                 <button
-                  id={`delete_education_${index}`}
+                  id={`delete_education_${index + 1}`}
                   onClick={() => deleteEducation(index)}
                 >
                   Delete
@@ -198,7 +200,7 @@ const App = (props) => {
               <div key={index} id={`skill_${index + 1}`}>
                 {index + 1}. {s}
                 <button
-                  id={`delete_skill_${index}`}
+                  id={`delete_skill_${index + 1}`}
                   onClick={() => deleteSkill(index)}
                 >
                   Delete
@@ -255,7 +257,7 @@ const App = (props) => {
               <div key={index} id={`project_${index + 1}`}>
                 {index + 1}. {proj.projectName}
                 <button
-                  id={`delete_project_${index}`}
+                  id={`delete_project_${index + 1}`}
                   onClick={() => deleteProject(index)}
                 >
                   Delete
@@ -297,6 +299,12 @@ const App = (props) => {
             {social.map((link, index) => (
               <div key={index} id={`social_${index + 1}`}>
                 {index + 1}. {link}
+                <button
+                  id={`delete_social_${index + 1}`}
+                  onClick={() => deleteSocial(index)}
+                >
+                  Delete
+                </button>
               </div>
             ))}
           </div>
@@ -325,7 +333,7 @@ const App = (props) => {
             Back
           </button>
         )}
-        {page < 5 && (
+        {page < 4 && (
           <button
             id="next"
             className="MuiButton-contained"
@@ -358,7 +366,8 @@ const mapDispatchToProps = {
   deleteSkill,
   addProject,
   deleteProject,
-  addSocial
+  addSocial,
+  deleteSocial
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

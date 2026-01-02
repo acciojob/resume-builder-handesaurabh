@@ -8,3 +8,4 @@ export const deleteSkill = (index) => ({ type: "DEL_SKILL", payload: index });
 export const addProject = (project) => ({ type: "ADD_PROJECT", payload: project });
 export const deleteProject = (index) => ({ type: "DEL_PROJECT", payload: index });
 export const addSocial = (social) => ({ type: "ADD_SOCIAL", payload: social });
+export const deleteSocial = (index) => ({ type: "DEL_SOCIAL", payload: index });
