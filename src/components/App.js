@@ -53,6 +53,7 @@ const App = (props) => {
           <h2>Add your profile details</h2>
 
           <input
+            id="fname"
             name="fname"
             value={localProfile.fname || ""}
             onChange={(e) =>
@@ -60,6 +61,7 @@ const App = (props) => {
             }
           />
           <input
+            id="lname"
             name="lname"
             value={localProfile.lname || ""}
             onChange={(e) =>
@@ -67,6 +69,7 @@ const App = (props) => {
             }
           />
           <input
+            id="phone"
             name="phone"
             value={localProfile.phone || ""}
             onChange={(e) =>
@@ -74,6 +77,7 @@ const App = (props) => {
             }
           />
           <input
+            id="address"
             name="address"
             value={localProfile.address || ""}
             onChange={(e) =>
@@ -81,6 +85,7 @@ const App = (props) => {
             }
           />
           <input
+            id="url"
             name="url"
             value={localProfile.url || ""}
             onChange={(e) =>
@@ -105,6 +110,7 @@ const App = (props) => {
           <h2>Add your Education Details</h2>
 
           <input
+            id="courseName"
             name="courseName"
             value={localEducation.courseName || ""}
             onChange={(e) =>
@@ -115,6 +121,7 @@ const App = (props) => {
             }
           />
           <input
+            id="completionYear"
             name="completionYear"
             value={localEducation.completionYear || ""}
             onChange={(e) =>
@@ -125,6 +132,7 @@ const App = (props) => {
             }
           />
           <input
+            id="college"
             name="college"
             value={localEducation.college || ""}
             onChange={(e) =>
@@ -135,6 +143,7 @@ const App = (props) => {
             }
           />
           <input
+            id="percentage"
             name="percentage"
             value={localEducation.percentage || ""}
             onChange={(e) =>
@@ -157,7 +166,7 @@ const App = (props) => {
 
           <div>
             {education.map((edu, index) => (
-              <div key={index} className="entry-item">
+              <div key={index} className="entry-item" id={`education_entry_${index}`}>
                 {edu.courseName}
                 <button
                   id={`delete_education_${index}`}
@@ -178,6 +187,7 @@ const App = (props) => {
           <h2>Skills</h2>
 
           <input
+            id="skillInput"
             name="skill"
             value={skill}
             onChange={(e) => setSkill(e.target.value)}
@@ -185,7 +195,7 @@ const App = (props) => {
 
           <div>
             {skills.map((s, index) => (
-              <div key={index}>
+              <div key={index} id={`skill_${index + 1}`}>
                 {index + 1}. {s}
                 <button
                   id={`delete_skill_${index}`}
@@ -216,6 +226,7 @@ const App = (props) => {
           <h2>Add your Mini Projects</h2>
 
           <input
+            id="projectName"
             name="projectName"
             value={project.projectName}
             onChange={(e) =>
@@ -223,6 +234,7 @@ const App = (props) => {
             }
           />
           <input
+            id="techStack"
             name="techStack"
             value={project.techStack}
             onChange={(e) =>
@@ -230,6 +242,7 @@ const App = (props) => {
             }
           />
           <textarea
+            id="description"
             name="description"
             value={project.description}
             onChange={(e) =>
@@ -239,7 +252,7 @@ const App = (props) => {
 
           <div>
             {projects.map((proj, index) => (
-              <div key={index}>
+              <div key={index} id={`project_${index + 1}`}>
                 {index + 1}. {proj.projectName}
                 <button
                   id={`delete_project_${index}`}
@@ -274,6 +287,7 @@ const App = (props) => {
           <h2>Social Media Links</h2>
 
           <input
+            id="socialInput"
             name="Social"
             value={localSocial}
             onChange={(e) => setLocalSocial(e.target.value)}
@@ -281,7 +295,7 @@ const App = (props) => {
 
           <div>
             {social.map((link, index) => (
-              <div key={index}>
+              <div key={index} id={`social_${index + 1}`}>
                 {index + 1}. {link}
               </div>
             ))}
