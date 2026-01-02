@@ -166,7 +166,7 @@ const App = (props) => {
             Add Education
           </button>
 
-          <div>
+          <div id="education-list">
             {education.map((edu, index) => (
               <div key={index} className="entry-item" id={`education_${index + 1}`}>
                 {edu.courseName}
