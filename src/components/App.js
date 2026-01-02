@@ -53,16 +53,28 @@ const App = (props) => {
           <input name="college" value={localEducation.college || ""} onChange={e => setLocalEducation({ ...localEducation, college: e.target.value })} />
           <input name="percentage" value={localEducation.percentage || ""} onChange={e => setLocalEducation({ ...localEducation, percentage: e.target.value })} />
 
-          <button id="add_education" onClick={() => {
-            addEducation(localEducation);
-            setLocalEducation({});
-          }}>Add Edu</button>
+          <button
+            id="add_education"
+            data-testid="add-education-btn"
+            onClick={() => {
+              addEducation(localEducation);
+              setLocalEducation({});
+            }}
+          >
+            Add Education
+          </button>
+
 
           <div>
             {education.map((edu, index) => (
               <div key={index} className="entry-item">
                 <span>{edu.courseName} - {edu.college}</span>
-                <button id={`delete_education_${index}`} onClick={() => deleteEducation(index)}>Delete</button>
+                <button
+                  id={`delete_education_${index}`}
+                  onClick={() => deleteEducation(index)}
+                >
+                  Delete
+                </button>
               </div>
             ))}
           </div>
@@ -85,10 +97,16 @@ const App = (props) => {
           <div>
             {skills.map((s, index) => (
               <div key={index} className="entry-item">
-                <span>{s}</span>
-                <button id={`delete_skill_${index}`} onClick={() => deleteSkill(index)}>Delete</button>
+                <span>{index + 1}. {s}</span>
+                <button
+                  id={`delete_skill_${index}`}
+                  onClick={() => deleteSkill(index)}
+                >
+                  Delete
+                </button>
               </div>
             ))}
+
           </div>
 
           <span id="skills_count">{skills.length}</span>
@@ -111,10 +129,18 @@ const App = (props) => {
           <div>
             {projects.map((proj, index) => (
               <div key={index} className="entry-item">
-                <span>{proj.projectName} - {proj.techStack}</span>
-                <button id={`delete_project_${index}`} onClick={() => deleteProject(index)}>Delete</button>
+                <span>
+                  {index + 1}. {proj.projectName} - {proj.techStack}
+                </span>
+                <button
+                  id={`delete_project_${index}`}
+                  onClick={() => deleteProject(index)}
+                >
+                  Delete
+                </button>
               </div>
             ))}
+
           </div>
 
           <span id="projects_count">{projects.length}</span>
@@ -132,7 +158,15 @@ const App = (props) => {
             setLocalSocial("");
           }}>Add</button>
 
+          <div>
+            {social.map((link, index) => (
+              <div key={index}>
+                {index + 1}. {link}
+              </div>
+            ))}
+          </div>
           <span id="social_count">{social.length}</span>
+
         </div>
       )}
 
