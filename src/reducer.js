@@ -10,10 +10,10 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case "NEXT":
-      return { ...state, page: state.page + 1 };
+      return { ...state, page: Math.min(state.page + 1, 5) };
 
     case "BACK":
-      return { ...state, page: state.page - 1 };
+      return { ...state, page: Math.max(state.page - 1, 0) };
 
     case "SAVE_PROFILE":
       return { ...state, profile: action.payload };

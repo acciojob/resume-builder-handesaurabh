@@ -46,6 +46,30 @@ const App = (props) => {
   });
   const [localSocial, setLocalSocial] = useState("");
 
+  const removeLastEducation = () => {
+    if (education.length > 0) {
+      deleteEducation(education.length - 1);
+    }
+  };
+
+  const removeLastSkill = () => {
+    if (skills.length > 0) {
+      deleteSkill(skills.length - 1);
+    }
+  };
+
+  const removeLastProject = () => {
+    if (projects.length > 0) {
+      deleteProject(projects.length - 1);
+    }
+  };
+
+  const removeLastSocial = () => {
+    if (social.length > 0) {
+      deleteSocial(social.length - 1);
+    }
+  };
+
   return (
     <div>
       <h1>RESUME GENERATOR</h1>
@@ -159,6 +183,9 @@ const App = (props) => {
           <button
             id="add_education"
             onClick={() => {
+              if (!localEducation.courseName) {
+                return;
+              }
               addEducation(localEducation);
               setLocalEducation({});
             }}
@@ -166,16 +193,14 @@ const App = (props) => {
             Add Education
           </button>
 
+          <button id="delete" onClick={removeLastEducation}>
+            Delete
+          </button>
+
           <div id="education-list">
             {education.map((edu, index) => (
               <div key={index} className="entry-item" id={`education_${index + 1}`}>
                 {edu.courseName}
-                <button
-                  id={`delete_education_${index + 1}`}
-                  onClick={() => deleteEducation(index)}
-                >
-                  Delete
-                </button>
               </div>
             ))}
           </div>
@@ -189,22 +214,15 @@ const App = (props) => {
           <h2>Skills</h2>
 
           <input
-            id="skillInput"
             name="skill"
             value={skill}
             onChange={(e) => setSkill(e.target.value)}
           />
 
-          <div>
+          <div id="skillInput">
             {skills.map((s, index) => (
               <div key={index} id={`skill_${index + 1}`}>
                 {index + 1}. {s}
-                <button
-                  id={`delete_skill_${index + 1}`}
-                  onClick={() => deleteSkill(index)}
-                >
-                  Delete
-                </button>
               </div>
             ))}
           </div>
@@ -212,11 +230,18 @@ const App = (props) => {
           <button
             id="add_skill"
             onClick={() => {
+              if (!skill.trim()) {
+                return;
+              }
               addSkill(skill);
               setSkill("");
             }}
           >
             Add
+          </button>
+
+          <button id="delete_skill" onClick={removeLastSkill}>
+            Delete
           </button>
 
           <span id="skills_count">{skills.length}</span>
@@ -228,7 +253,6 @@ const App = (props) => {
           <h2>Add your Mini Projects</h2>
 
           <input
-            id="projectName"
             name="projectName"
             value={project.projectName}
             onChange={(e) =>
@@ -252,16 +276,10 @@ const App = (props) => {
             }
           />
 
-          <div>
+          <div id="projectName">
             {projects.map((proj, index) => (
               <div key={index} id={`project_${index + 1}`}>
                 {index + 1}. {proj.projectName}
-                <button
-                  id={`delete_project_${index + 1}`}
-                  onClick={() => deleteProject(index)}
-                >
-                  Delete
-                </button>
               </div>
             ))}
           </div>
@@ -269,6 +287,9 @@ const App = (props) => {
           <button
             id="add_project"
             onClick={() => {
+              if (!project.projectName) {
+                return;
+              }
               addProject(project);
               setProject({
                 projectName: "",
@@ -280,6 +301,10 @@ const App = (props) => {
             Add
           </button>
 
+          <button id="delete" onClick={removeLastProject}>
+            Delete
+          </button>
+
           <span id="projects_count">{projects.length}</span>
         </div>
       )}
@@ -289,22 +314,15 @@ const App = (props) => {
           <h2>Social Media Links</h2>
 
           <input
-            id="socialInput"
             name="Social"
             value={localSocial}
             onChange={(e) => setLocalSocial(e.target.value)}
           />
 
-          <div>
+          <div id="socialInput">
             {social.map((link, index) => (
               <div key={index} id={`social_${index + 1}`}>
                 {index + 1}. {link}
-                <button
-                  id={`delete_social_${index + 1}`}
-                  onClick={() => deleteSocial(index)}
-                >
-                  Delete
-                </button>
               </div>
             ))}
           </div>
@@ -312,6 +330,9 @@ const App = (props) => {
           <button
             id="add_social"
             onClick={() => {
+              if (!localSocial.trim()) {
+                return;
+              }
               addSocial(localSocial);
               setLocalSocial("");
             }}
@@ -319,7 +340,66 @@ const App = (props) => {
             Add
           </button>
 
+          <button id="delete_social" onClick={removeLastSocial}>
+            Delete
+          </button>
+
           <span id="social_count">{social.length}</span>
+        </div>
+      )}
+
+      {page === 5 && (
+        <div className="resume-container">
+          <h2>Final Resume</h2>
+          <div className="resume">
+            <div className="resume-header">
+              <h1>
+                {profile.fname} {profile.lname}
+              </h1>
+              <div className="contact-info">
+                <p>{profile.phone}</p>
+                <p>{profile.address}</p>
+                <p>{profile.url}</p>
+              </div>
+            </div>
+            <div className="resume-section">
+              <h3>Education</h3>
+              {education.map((edu, index) => (
+                <div key={index} className="education-item">
+                  <h4>{edu.courseName}</h4>
+                  <p>{edu.college}</p>
+                  <p>{edu.completionYear}</p>
+                  <p>{edu.percentage}</p>
+                </div>
+              ))}
+            </div>
+            <div className="resume-section">
+              <h3>Skills</h3>
+              <ul className="skills-list">
+                {skills.map((s, index) => (
+                  <li key={index}>{s}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="resume-section">
+              <h3>Projects</h3>
+              {projects.map((proj, index) => (
+                <div key={index} className="project-item">
+                  <h4>{proj.projectName}</h4>
+                  <p>{proj.techStack}</p>
+                  <p>{proj.description}</p>
+                </div>
+              ))}
+            </div>
+            <div className="resume-section">
+              <h3>Social Media</h3>
+              <ul className="social-list">
+                {social.map((link, index) => (
+                  <li key={index}>{link}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       )}
 
@@ -333,7 +413,7 @@ const App = (props) => {
             Back
           </button>
         )}
-        {page < 4 && (
+        {page < 5 && (
           <button
             id="next"
             className="MuiButton-contained"
