@@ -413,7 +413,7 @@ const App = (props) => {
             Back
           </button>
         )}
-        {page < 5 && (
+        {page > 0 && page < 5 && (
           <button
             id="next"
             className="MuiButton-contained"
